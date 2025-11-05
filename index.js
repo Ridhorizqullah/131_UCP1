@@ -40,3 +40,33 @@ app.get('/hotel', async (req, res) => {
         res.send({message : error.message});
     }
 });
+
+app.put('/hotel/:id', async (req, res) => {
+    const id = req.params.id;
+    const data = req.body;
+    try {
+        const hotel = await db.hotel.findByPk(id);
+        if (!hotel) {
+            return res.status(404).send({ message: 'hotel not found' });
+        }
+        await hotel.update(data);   
+        res.send({ message: 'hotel berhasil di update' });
+    } 
+    catch (error) {
+        res.send({ message: error.message });
+    }
+});
+
+app.delete('/hotel/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const hotel = await db.hotel.findByPk(id);
+        if (!hotel) {
+            return res.status(404).send({ message: 'hotel not found' });
+        }
+        await hotel.destroy();
+        res.send({ message: 'hotel berhasil dihapus' });
+    } catch (error) {
+        res.send({ message: error.message });
+    }
+});
