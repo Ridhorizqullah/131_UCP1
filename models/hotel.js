@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        tanggal_pesan: {    
-            type: DataTypes.TEXT,
-            allowNull: true,
+        fasilitas: {    
+            type: DataTypes.STRING,
+            allowNull: false,
         },
     }, {
         tableName: 'hotel',

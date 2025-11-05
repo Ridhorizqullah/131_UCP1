@@ -31,3 +31,12 @@ app.post('/hotel', async (req, res) => {
     }
 });
 
+app.get('/hotel', async (req, res) => {
+    try{
+        const Hotel = await db.Hotel.findAll();
+        res.send(Hotel);
+    }
+    catch (error){
+        res.send({message : error.message});
+    }
+});
