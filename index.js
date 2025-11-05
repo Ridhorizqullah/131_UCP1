@@ -20,3 +20,14 @@ db.sequelize.sync()
     .catch((err) => {
         console.log(err);
     })
+
+app.post('/hotel', async (req, res) => {
+    const data = req.body;
+     try {
+        const hotel = await db.hotel.create(data);
+        res.status(hotel);
+    } catch (error) {
+    res.send({message : error.message});
+    }
+});
+
